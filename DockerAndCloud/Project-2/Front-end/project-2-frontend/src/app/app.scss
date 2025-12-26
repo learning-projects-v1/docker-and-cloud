@@ -1,0 +1,8 @@
+.log-container {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto; /* Adds a scrollbar if the lines are too wide */
+    white-space: pre-wrap; /* Ensures it doesn't just go off the screen horizontally */
+}

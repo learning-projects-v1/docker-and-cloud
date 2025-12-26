@@ -1,0 +1,43 @@
+<h1>Hello World</h1>
+
+<div>
+  <div>
+    <p>Read from a file: <button (click)="readFromFile()">click</button></p>
+    <p>file read result: {{ fileReadResult }}</p>
+  </div>
+
+
+  <div>
+    <p> Get system info: <button (click)="getSystemInfo()">click</button></p>
+    <p> System info: </p>
+    <pre> {{systemInfo}} </pre>
+  </div>
+
+  <div>
+    <p> Hit root url: <button (click)="HitRootUrl()">click</button></p>
+    <p> Root info: </p>
+    <pre> {{root}} </pre>
+  </div>
+  
+  <div>
+    <p> Get environment info: <button (click)="getEnvironmentInfo()">click</button></p>
+    <p> EnvironmentInfo info: </p>
+    <pre> {{environmentInfo}} </pre>
+  </div>
+  
+  <div>
+    <input type="text" name="logs" [(ngModel)]="logMessage"/>
+    <p> Post log:<button (click)="postLogs(logMessage)">click</button></p>
+  </div>
+
+  <div style="white-space: pre-wrap; font-family: monospace; background: #222; color: #eee; padding: 10px;">
+    <p> Get logs <button (click)="getLogs()">click</button></p>
+    <p> logs: </p>
+    <pre class="log-container"> {{logs}} </pre>
+  </div>
+  
+
+
+  
+ 
+</div>
