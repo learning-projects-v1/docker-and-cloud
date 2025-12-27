@@ -1,0 +1,2 @@
+"FRONTEND_BASE": "http://localhost:4200"
+ docker run -d -p 5000:8080 sha256:39adecb3f812281f71da86b35155dbb951b013697c0e202382d70275bb249e33

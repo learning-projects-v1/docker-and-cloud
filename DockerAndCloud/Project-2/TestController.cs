@@ -70,7 +70,7 @@ public class TestController : ControllerBase
     [HttpPost("log")]
     public void PostLog([FromBody]string msg)
     {
-        _logger.LogInformation(msg);
+        _logger.LogCritical(msg);
     }
 
     [HttpGet("log")]
@@ -81,5 +81,13 @@ public class TestController : ControllerBase
         var split = values.Split("\n");
         
         return new{ values = split };
+    }
+
+    [HttpDelete("log")]
+    public void DeleteLog()
+    {
+        var logPath = Environment.GetEnvironmentVariable("LOG_PATH");
+        var values = System.IO.File.ReadAllText(logPath);
+        System.IO.File.WriteAllText(logPath, "");
     }
 }

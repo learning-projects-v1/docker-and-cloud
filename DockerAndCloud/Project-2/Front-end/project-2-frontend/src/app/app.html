@@ -1,4 +1,4 @@
-<h1>Hello World</h1>
+<!-- <h1>Hello World</h1>
 
 <div>
   <div>
@@ -35,9 +35,71 @@
     <p> logs: </p>
     <pre class="log-container"> {{logs}} </pre>
   </div>
-  
 
+   <div>
+    <p> Clear Logs <button (click)="deleteLogs()">click</button></p>
+  </div>
+</div> -->
 
-  
- 
+<h1 class="page-title">Hello World</h1>
+
+<div class="page-container">
+  <div class="card">
+    <p class="card-title">
+      Read from a file
+      <button class="btn btn-primary" (click)="readFromFile()">Click</button>
+    </p>
+    <p class="result-text">{{ fileReadResult }}</p>
+  </div>
+
+  <div class="card">
+    <p class="card-title">
+      Get system info
+      <button class="btn btn-primary" (click)="getSystemInfo()">Click</button>
+    </p>
+    <pre class="output-box">{{ systemInfo }}</pre>
+  </div>
+
+  <div class="card">
+    <p class="card-title">
+      Hit root url
+      <button class="btn btn-primary" (click)="HitRootUrl()">Click</button>
+    </p>
+    <pre class="output-box">{{ root }}</pre>
+  </div>
+
+  <div class="card">
+    <p class="card-title">
+      Get environment info
+      <button class="btn btn-primary" (click)="getEnvironmentInfo()">Click</button>
+    </p>
+    <pre class="output-box">{{ environmentInfo }}</pre>
+  </div>
+
+  <div class="card">
+    <input
+      class="input"
+      type="text"
+      name="logs"
+      placeholder="Enter log message"
+      [(ngModel)]="logMessage"
+    />
+    <button class="btn btn-success" (click)="postLogs(logMessage)">
+      Post log
+    </button>
+  </div>
+
+  <div class="card log-card">
+    <p class="card-title">
+      Get logs
+      <button class="btn btn-secondary" (click)="getLogs()">Click</button>
+    </p>
+    <pre class="log-container">{{ logs }}</pre>
+  </div>
+
+  <div class="card">
+    <button class="btn btn-danger" (click)="deleteLogs()">
+      Clear Logs
+    </button>
+  </div>
 </div>

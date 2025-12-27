@@ -1,7 +1,7 @@
 import { Component, OnDestroy, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpService } from './http-service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -81,6 +81,14 @@ export class App implements OnDestroy {
       .subscribe((res) => {
         this.logs = JSON.stringify(res, null, 2);
       });
+  }
+
+  deleteLogs(){
+    this.httpService.deleteLogs()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(res => {
+        console.log("logs deleted!");
+      })
   }
 
   ngOnDestroy(): void {
