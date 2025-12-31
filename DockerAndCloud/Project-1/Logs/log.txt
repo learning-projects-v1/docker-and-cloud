@@ -1,2 +1,6 @@
-Critical: oijlk
+Information: Now listening on: http://localhost:5000
+Information: Application started. Press Ctrl+C to shut down.
+Information: Hosting environment: Development
+Information: Content root path: /Users/purple_ghost/Documents/my-projects/docker-and-cloud/docker-and-cloud/DockerAndCloud/Project-2/Backend
+Critical: kjhkj
 Information: Application is shutting down...
