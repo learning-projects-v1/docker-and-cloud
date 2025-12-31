@@ -1,13 +1,12 @@
 using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Project_1;
+namespace Project_2;
 
 [ApiController]
 [Route("api/[controller]")]
 public class TestController : ControllerBase
 {
-
     private readonly IConfiguration _configuration;
     private readonly ILogger<TestController> _logger;
     public TestController(IConfiguration configuration, ILogger<TestController> logger)
@@ -19,28 +18,17 @@ public class TestController : ControllerBase
     public string GetFileContents()
     {
         const string fileName = "dummy.json";
-        // var configPath = _configuration.GetSection("Config:ConfigPath").Value;
         var path = Path.Combine(Directory.GetCurrentDirectory(), fileName);
         Console.WriteLine($"ConfigPath: {path ?? "not found"}");
-        // if (Path.Exists(configPath))
-        // {
-        //     var values = System.IO.File.ReadAllText(configPath);
-        //     Console.WriteLine(values);
-        //     return values;
-        // }
         var values = System.IO.File.ReadAllText(path);
         Console.WriteLine(values);
         return values;
-         
-        return "Path doesn't exist";
     }
 
     [HttpGet("system")]
     public object GetSystemInfo()
     {
         string osDesc = RuntimeInformation.OSDescription;
-
-// Get architecture (e.g., X64, Arm64)
         Architecture arch = RuntimeInformation.ProcessArchitecture;
         return new
         {
@@ -59,11 +47,13 @@ public class TestController : ControllerBase
     public object GetEnvironment()
     {
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-        var prodLogPath = Environment.GetEnvironmentVariable("LOG_PATH");
+        var logPath = _configuration["Logging:LogPath"];
+        var url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS");
         return new
         {
             environment = environment,
-            prodLogPath = prodLogPath
+            prodLogPath = logPath,
+            rootUrl = url
         };
     }
 
@@ -76,7 +66,7 @@ public class TestController : ControllerBase
     [HttpGet("log")]
     public object GetLogs()
     {
-        var logPath = Environment.GetEnvironmentVariable("LOG_PATH");
+        var logPath = _configuration["Logging:LogPath"];
         var values = System.IO.File.ReadAllText(logPath);
         var split = values.Split("\n");
         
@@ -86,7 +76,7 @@ public class TestController : ControllerBase
     [HttpDelete("log")]
     public void DeleteLog()
     {
-        var logPath = Environment.GetEnvironmentVariable("LOG_PATH");
+        var logPath = _configuration["Logging:LogPath"];
         var values = System.IO.File.ReadAllText(logPath);
         System.IO.File.WriteAllText(logPath, "");
     }

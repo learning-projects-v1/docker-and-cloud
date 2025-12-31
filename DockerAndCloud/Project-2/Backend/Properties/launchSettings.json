@@ -17,8 +17,7 @@
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "LOG_PATH": "/Users/purple_ghost/Documents/my-projects/docker-and-cloud/docker-and-cloud/DockerAndCloud/Project-1/Logs/log.txt",
-        "FRONTEND_BASE": "http://localhost:4200"
+        "ASPNETCORE_URLS": "http://127.0.0.1:5000"
       }
     },
     "https": {

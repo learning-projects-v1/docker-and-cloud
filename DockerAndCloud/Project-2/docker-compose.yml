@@ -1,0 +1,30 @@
+
+
+services:
+  api:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: Project-2-api
+    ports:
+      - "6000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - project-2-network
+
+  frontend:
+    build:
+      context: "./Front-end/project-2-frontend"
+      dockerfile: dockerfile
+    container_name: Project-2-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+    networks:
+      - project-2-network
+
+networks:
+  project-2-network:
+    driver: bridge

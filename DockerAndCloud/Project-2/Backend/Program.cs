@@ -1,14 +1,13 @@
 
-
-
-using Project_1.Logger;
+using Project_2.Logger;
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 builder.Services.AddCors((options) =>
 {
     options.AddPolicy("allowAll", (policy) =>
     {
         policy
-            .WithOrigins($"{Environment.GetEnvironmentVariable("FRONTEND_BASE")}")
+            .WithOrigins($"{config["FRONTEND:BASEURL"]}")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
@@ -17,7 +16,7 @@ builder.Services.AddCors((options) =>
 
 builder.Logging.ClearProviders();
 builder.Logging.AddProvider(new CustomLoggerProvider());
-var prodLogPath = Environment.GetEnvironmentVariable("LOG_PATH");
+var prodLogPath = config["Logging:LogPath"];
 builder.Logging.AddProvider(new FileLoggerProvider(prodLogPath)); 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

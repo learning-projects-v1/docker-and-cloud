@@ -5,12 +5,9 @@ docker build -t project-2-backend .
 
 
  -- backend
- docker run -d -h project-2-backend -p 5000:8080 sha256:d8a1417f1c541af81ffbb6ee16406a0a0369b4b4acc0b7c36d9b0f48242a2a4a
+ docker run -d -p 5000:8080 sha256:57753ee856aab511258d5950e00e8eec888fe418e6e37c2182b47ea124434728
  
  -- frontend
  docker run -d -p 4200:80 sha256:4c0333f7fe84bcd67d54cd3b5bca28fca1f00e0ea25b44c2975366241108d994
  
  
- 
- docker exec -it 63b63a9876e5e801f66dd3116749672561a4a368be0a45a7c9c2c7963ac7c515 sh
- ls /usr/share/nginx/html

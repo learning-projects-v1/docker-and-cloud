@@ -1,4 +1,4 @@
-namespace Project_1.Logger;
+namespace Project_2.Logger;
 
 public class CustomLogger(string categoryName) : ILogger
 {
