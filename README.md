@@ -1,5 +1,4 @@
-# Project-2 — Dockerized Full-Stack Chat Application
-
+# Project-2 — Simple Dockerized angular dashboard
 ## Overview
 
 **Project-2** is a full-stack chat application built using **Angular**, **ASP.NET Core**, with a strong emphasis on real-world architecture, Docker-based deployment, and environment-specific configuration.  
