@@ -34,13 +34,8 @@ docker compose up --build
 
 ## Design & Learning Goals
 
-Docker multi-stage builds
-
-Docker Compose service orchestration
-
-Backend–frontend communication inside Docker networks
-
-Environment-specific configuration management
-
-Foundations for scalable architecture
+* Docker multi-stage builds
+* Docker Compose service orchestration
+* Backend–frontend communication inside Docker networks
+* Environment-specific configuration management
 
