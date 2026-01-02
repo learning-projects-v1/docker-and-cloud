@@ -11,3 +11,13 @@ Stack: Angular | .NET Core | NGINX | Docker Compose
 
 ## Run
 docker-compose up --build
+
+### alternately the front-end and backend can be run individually by running the corresponding start commands.
+* Frontend:
+
+```ng serve```
+* Backend: 
+```
+dotnet build
+dotnet run
+```
