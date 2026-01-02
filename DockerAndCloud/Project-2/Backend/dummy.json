@@ -1,0 +1,12 @@
+[
+    {
+        "name": "abul",
+        "reg": 20,
+        "cgpa": 3.23
+    },
+    {
+        "name": "babul",
+        "reg": 21,
+        "cgpa": 3.5 
+    }
+]
