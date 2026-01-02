@@ -49,11 +49,13 @@ public class TestController : ControllerBase
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         var logPath = _configuration["Logging:LogPath"];
         var url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS");
+        var frontendUrl = _configuration["Frontend:BaseUrl"];
         return new
         {
             environment = environment,
             prodLogPath = logPath,
-            rootUrl = url
+            rootUrl = url,
+            frontendUrl = frontendUrl
         };
     }
 

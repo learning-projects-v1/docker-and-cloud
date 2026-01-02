@@ -12,12 +12,12 @@ WORKDIR /myApp
 COPY --from=build /publish .
 
 # volume for logs
-RUN mkdir "/myApp/Logs" && chmod 777 Logs
-VOLUME ["/myApp/Logs"]
-ENV LOG_PATH="/myApp/Logs/log.txt"
-ENV ASPNETCORE_URLS=http://0.0.0.0:8080
-ENV ASPNETCORE_ENVIRONMENT=Production
-ENV FRONTEND_BASE=http://localhost:4200
+#RUN mkdir "/myApp/Logs" && chmod 777 Logs
+#VOLUME ["/myApp/Logs"]
+#ENV LOG_PATH="/myApp/Logs/log.txt"
+#ENV ASPNETCORE_URLS=http://0.0.0.0:8080
+#ENV ASPNETCORE_ENVIRONMENT=Production
+#ENV FRONTEND_BASE=http://localhost:4200
 
 EXPOSE 8080
 ENTRYPOINT ["dotnet", "Project-2.dll"]

@@ -17,7 +17,7 @@ builder.Services.AddCors((options) =>
 builder.Logging.ClearProviders();
 builder.Logging.AddProvider(new CustomLoggerProvider());
 var prodLogPath = config["Logging:LogPath"];
-builder.Logging.AddProvider(new FileLoggerProvider(prodLogPath)); 
+builder.Logging.AddProvider(new FileLoggerProvider(prodLogPath));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

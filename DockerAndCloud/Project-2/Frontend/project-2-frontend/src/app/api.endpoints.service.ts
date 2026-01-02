@@ -12,11 +12,11 @@ export interface ApiEndpoints {
 
 export function createApiEndpoints(apiBaseUrl: string): ApiEndpoints {
   return {
-    fileRead: `${apiBaseUrl}/api/test/file-read`,
-    systemInfo: `${apiBaseUrl}/api/test/system`,
-    root: `${apiBaseUrl}/api/test`,
-    environment: `${apiBaseUrl}/api/test/environment`,
-    log: `${apiBaseUrl}/api/test/log`,
+    fileRead: `${apiBaseUrl}/test/file-read`,
+    systemInfo: `${apiBaseUrl}/test/system`,
+    root: `${apiBaseUrl}/test`,
+    environment: `${apiBaseUrl}/test/environment`,
+    log: `${apiBaseUrl}/test/log`,
   };
 }
 
