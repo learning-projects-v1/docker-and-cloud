@@ -36,11 +36,12 @@ docker compose up --build
 
 #### Frontend
 ```bash
-cd Front-end/project-2-frontend
+cd Frontend/project-2-frontend
 ng serve
 ```
 #### Backend
 ```bash
+cd Backend
 dotnet clean
 dotnet build
 dotnet run
