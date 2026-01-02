@@ -30,7 +30,21 @@ The backend follows standard ASP.NET Core configuration conventions:
 - `appsettings.Production.json` — mounted via Docker volume
 
 ## Running the Application
+### docker
 docker compose up --build
+### Local Development
+
+#### Frontend
+```bash
+cd Front-end/project-2-frontend
+ng serve
+```
+#### Backend
+```bash
+dotnet clean
+dotnet build
+dotnet run
+```
 
 ## Design & Learning Goals
 
