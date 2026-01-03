@@ -1,0 +1,13 @@
+"FRONTEND_BASE": "http://localhost:4200"
+# Build:
+docker build -t project-2-backend .
+
+
+
+ -- backend
+ docker run -d -p 5000:8080 sha256:57753ee856aab511258d5950e00e8eec888fe418e6e37c2182b47ea124434728
+ 
+ -- frontend
+ docker run -d -p 4200:80 sha256:4c0333f7fe84bcd67d54cd3b5bca28fca1f00e0ea25b44c2975366241108d994
+ 
+ 

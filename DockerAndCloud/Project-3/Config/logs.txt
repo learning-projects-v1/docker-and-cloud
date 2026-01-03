@@ -1,0 +1,6 @@
+Warning: Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://0.0.0.0:8080'.
+Information: Now listening on: http://0.0.0.0:8080
+Information: Application started. Press Ctrl+C to shut down.
+Information: Hosting environment: Production
+Information: Content root path: /myApp
+Information: Application is shutting down...
