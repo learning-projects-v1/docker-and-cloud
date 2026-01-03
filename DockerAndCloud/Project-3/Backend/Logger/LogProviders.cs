@@ -21,11 +21,7 @@ public class FileLoggerProvider(string filePath) : ILoggerProvider
 
     public ILogger CreateLogger(string categoryNam)
     {
-        // if (!File.Exists(filePath))
-        // {
-        //     File.Create(filePath);
-        // }
-        // File.Open(filePath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+        
         return new FileLogger(filePath);
     }
 }

@@ -19,8 +19,16 @@ public class FileLogger(string filePath) : ILogger
         var logRecord = $"{logLevel}: {logMessage}";
         lock (_lock)
         {
-            File.AppendAllText(filePath, logRecord);
-            File.AppendAllText(filePath, Environment.NewLine);
+            try
+            {
+                File.AppendAllText(filePath, logRecord);
+                File.AppendAllText(filePath, Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Log Writing Failed!");
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
