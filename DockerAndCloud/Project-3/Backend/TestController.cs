@@ -24,18 +24,18 @@ public class TestController : ControllerBase
         Console.WriteLine(values);
         return values;
     }
-
-    [HttpGet("system")]
-    public object GetSystemInfo()
-    {
-        string osDesc = RuntimeInformation.OSDescription;
-        Architecture arch = RuntimeInformation.ProcessArchitecture;
-        return new
-        {
-            OsDescription = osDesc,
-            Architecture = arch.ToString()
-        };
-    }
+    //
+    // [HttpGet("system")]
+    // public object GetSystemInfo()
+    // {
+    //     string osDesc = RuntimeInformation.OSDescription;
+    //     Architecture arch = RuntimeInformation.ProcessArchitecture;
+    //     return new
+    //     {
+    //         OsDescription = osDesc,
+    //         Architecture = arch.ToString()
+    //     };
+    // }
 
     [HttpGet("")]
     public object Test()
@@ -46,6 +46,11 @@ public class TestController : ControllerBase
     [HttpGet("environment")]
     public object GetEnvironment()
     {
+        _logger.LogInformation(
+            "Handled request {RequestId} on {Instance}",
+            HttpContext.Items["RequestId"],
+            Environment.MachineName
+        );
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         var logPath = _configuration["Logging:LogPath"];
         var url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS");
@@ -81,5 +86,24 @@ public class TestController : ControllerBase
         var logPath = _configuration["Logging:LogPath"];
         var values = System.IO.File.ReadAllText(logPath);
         System.IO.File.WriteAllText(logPath, "");
+    }
+    
+    [HttpGet("meta")]
+    public object GetMeta()
+    {
+        string osDesc = RuntimeInformation.OSDescription;
+        Architecture arch = RuntimeInformation.ProcessArchitecture;
+
+        var res = new
+        {
+            OsDescription = osDesc,
+            Architecture = arch.ToString(),
+            platform = _configuration["PLATFORM"],
+            service = _configuration["SERVICE_NAME"],
+            instanceId = _configuration["INSTANCE_ID"],
+            hostname = Environment.MachineName,
+            timestamp = DateTime.UtcNow
+        };
+        return res;
     }
 }

@@ -7,7 +7,7 @@ docker build -t project-3-backend .
  -- backend
  docker run -d -p 5000:8080 sha256:5a34ef61c80f1365c7bb2b6e43e9d1bfd37518ad474ff61029a5e0e107371a21
  
- docker run -d --env-file .env -p 5000:8080 sha256:6e6e5f656bd4d5618da9fc0c62eed88ba44b2f5ed03618629b7d67082d1f63a9
+ docker run -d --env-file .env -p 5000:8080 sha256:48c5ae8bd13c02bd02147ccee1b69e1b92b21dbd2c82b94596fb222c2d9e6c32
  
  -- frontend
  docker run -d -p 4200:80 sha256:4c0333f7fe84bcd67d54cd3b5bca28fca1f00e0ea25b44c2975366241108d994

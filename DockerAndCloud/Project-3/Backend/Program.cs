@@ -27,4 +27,14 @@ builder.Services.AddSingleton<ILoggerFactory, LoggerFactory>();
 var app = builder.Build();
 app.UseCors("allowAll");
 app.MapControllers();
+
+app.Use(async (context, next) =>
+{
+    var requestId = Guid.NewGuid().ToString();
+    
+    context.Items["RequestId"] = requestId;
+    context.Response.Headers["X-Request-Id"] = requestId;
+
+    await next();
+});
 app.Run();

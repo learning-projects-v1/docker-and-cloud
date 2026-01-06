@@ -22,12 +22,6 @@ public class TestController : ControllerBase
         // var configPath = _configuration.GetSection("Config:ConfigPath").Value;
         var path = Path.Combine(Directory.GetCurrentDirectory(), fileName);
         Console.WriteLine($"ConfigPath: {path ?? "not found"}");
-        // if (Path.Exists(configPath))
-        // {
-        //     var values = System.IO.File.ReadAllText(configPath);
-        //     Console.WriteLine(values);
-        //     return values;
-        // }
         var values = System.IO.File.ReadAllText(path);
         Console.WriteLine(values);
         return values;
@@ -39,8 +33,6 @@ public class TestController : ControllerBase
     public object GetSystemInfo()
     {
         string osDesc = RuntimeInformation.OSDescription;
-
-// Get architecture (e.g., X64, Arm64)
         Architecture arch = RuntimeInformation.ProcessArchitecture;
         return new
         {
