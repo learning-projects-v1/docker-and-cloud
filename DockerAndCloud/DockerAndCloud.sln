@@ -9,6 +9,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-3", "Project-3\Backend\Project-3.csproj", "{F8361557-D02F-4B8C-9257-F835282DF268}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project-4", "Project-4", "{377EC5AF-2C04-4B5E-AA44-0B498A3763CE}"
+	ProjectSection(SolutionItems) = preProject
+		Project-4\commands.txt = Project-4\commands.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{E7A769BA-DA1B-408D-A7A8-5E25136414A6}"
 EndProject
