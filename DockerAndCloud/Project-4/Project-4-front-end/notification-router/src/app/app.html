@@ -1,0 +1,99 @@
+<div>
+  <div class="content-wrapper">
+    <div>
+      <div class="message-section">
+        <!-- <h1 class="section-title">RabbitMQ Message Send</h1> -->
+
+        <label class="message-label" for="message">
+          Message
+        </label>
+
+        <input id="message" name="message" type="text" [(ngModel)]="message" class="message-input"
+          placeholder="Enter message payload..." />
+      </div>
+
+      <p> Message with id: {{messageId}} sent! </p>
+
+      @for (rabbitmqTypes of configs; track $index) {
+      <div class="type-block">
+        <h3>{{rabbitmqTypes.description}}</h3>
+        @for (exchanges of rabbitmqTypes.exchanges; track $index) {
+        @for (route of exchanges.routingKeys; track $index) {
+
+        <div class="route-row">
+          <span class="label">
+            Type:
+            <span class="value">{{ rabbitmqTypes.name }}</span>
+          </span>
+
+          <span class="label">
+            Exchange:
+            <span class="value">{{ exchanges.name }}</span>
+          </span>
+
+          <span class="label">RoutingKey:</span>
+
+          <span class="routing-key">
+            @for (routeValue of getRouteValues(route.routePattern); track $index; let i = $index) {
+
+            @if (i !== 0) {
+            <span class="dot">.</span>
+            }
+
+            @if (routeValue === "*" || routeValue === "#") {
+            <input type="text" [(ngModel)]="route.actualRoute![i]" class="route-input" />
+            }
+            @else {
+            <span class="token">{{ routeValue }}</span>
+            }
+            }
+          </span>
+
+          <button class="send-btn"
+            (click)="onSendRequest(rabbitmqTypes.name, exchanges.name, route.actualRoute!.join('.'))">
+            Send
+          </button>
+        </div>
+
+        }
+        }
+
+        <div class="divider"></div>
+      </div>
+      }
+
+    </div>
+
+    <div>
+
+      <!-- <h1> Response: <button (click)="fetchResponse()"> Fetch Response</button></h1>
+      <div>
+        @for (item of responses.reverse(); track $index) {
+        <p>id: {{item.correlationId}} Message: {{item.payload}} </p>
+        }
+      </div> -->
+
+      <div class="response-section">
+        <h1>
+          Response
+          <button (click)="fetchResponse()">Fetch Response</button>
+        </h1>
+
+        <div class="responses">
+          @for (item of responses; track $index) {
+          <p>
+            <span class="id">id: {{ item.correlationId }}</span> 
+            <span class="message">Message: {{ item.payload }}</span>
+          </p>
+          }
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- <pre>
+    {{configs | json}}
+  </pre> -->
+</div>
