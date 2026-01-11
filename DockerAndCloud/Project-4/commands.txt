@@ -13,3 +13,5 @@ docker build -t project-3-backend .
  docker run -d -p 4200:80 sha256:4c0333f7fe84bcd67d54cd3b5bca28fca1f00e0ea25b44c2975366241108d994
  
  
+ docker build -t project-4-Consumers Docker/EmailService.Dockerfile
+

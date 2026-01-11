@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerAndCloud", "DockerAndCloud\DockerAndCloud.csproj", "{92C3F730-DEAB-4806-A9EA-79912E9F9D5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-1", "Project-1\Project-1.csproj", "{DD686754-1A3F-42CD-94BC-455D91372FE2}"
@@ -26,6 +29,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "Project-4\Project-4.Consumers\PaymentService\PaymentService.csproj", "{F56CBA5E-0C77-444D-97DD-C1F02525A19C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetryService", "Project-4\Project-4.Consumers\RetryService\RetryService.csproj", "{F0050734-50BF-4DB5-9A81-E8769132D732}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		Project-4\Docker\EmailService.Dockerfile = Project-4\Docker\EmailService.Dockerfile
+		Project-4\Docker\PaymentService.Dockerfile = Project-4\Docker\PaymentService.Dockerfile
+		Project-4\Docker\RetryService.Dockerfile = Project-4\Docker\RetryService.Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +80,9 @@ Global
 		{F0050734-50BF-4DB5-9A81-E8769132D732}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0050734-50BF-4DB5-9A81-E8769132D732}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E7A769BA-DA1B-408D-A7A8-5E25136414A6} = {377EC5AF-2C04-4B5E-AA44-0B498A3763CE}
 		{9546D007-3FF6-4366-9194-01E5A5885AA2} = {377EC5AF-2C04-4B5E-AA44-0B498A3763CE}
@@ -78,5 +91,9 @@ Global
 		{48632F8C-E90F-468F-8CA4-7CC451D385BD} = {9546D007-3FF6-4366-9194-01E5A5885AA2}
 		{F56CBA5E-0C77-444D-97DD-C1F02525A19C} = {9546D007-3FF6-4366-9194-01E5A5885AA2}
 		{F0050734-50BF-4DB5-9A81-E8769132D732} = {9546D007-3FF6-4366-9194-01E5A5885AA2}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {377EC5AF-2C04-4B5E-AA44-0B498A3763CE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C1EBC6B-A245-4B75-928B-DD4DC5B738D4}
 	EndGlobalSection
 EndGlobal
