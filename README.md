@@ -1,4 +1,4 @@
-# Project-2: Dockerized Angular-Dotnet Dashboard
+# Project-3: Dockerized Angular-Dotnet Dashboard
 Description: A full-stack dashboard featuring an Angular frontend and a .NET Web API. The entire stack is containerized, utilizing NGINX as both a web server for static assets and a reverse proxy for API routing.
 
 Key Technical Highlights:
