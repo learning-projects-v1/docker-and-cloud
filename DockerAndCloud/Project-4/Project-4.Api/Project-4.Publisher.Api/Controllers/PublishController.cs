@@ -35,4 +35,10 @@ public class PublishController : ControllerBase
         return Ok();
     }
 
+    [HttpGet("/")]
+    public IActionResult Test()
+    {
+        return Ok("Running ok!");
+    }
+
 }

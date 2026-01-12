@@ -7,16 +7,56 @@
  docker run -d -p 4200:80 sha256:4c0333f7fe84bcd67d54cd3b5bca28fca1f00e0ea25b44c2975366241108d994
  
  
- ---------
- docker build -f docker/email-consumer.Dockerfile -t yourdockerhub/email-consumer:latest .
- docker build -f docker/sms-consumer.Dockerfile -t yourdockerhub/sms-consumer:latest .
- docker build -f docker/push-consumer.Dockerfile -t yourdockerhub/push-consumer:latest .
-
- 
+ --------- 
 docker build -f Docker/EmailService.Dockerfile -t email-service .
 docker build -f Docker/PaymentService.Dockerfile -t payment-service .
 docker build -f Docker/RetryService.Dockerfile -t retry-service .
 docker build -f Docker/WebApi.Dockerfile -t web-api .
 
 docker compose -f Docker/docker-compose.yml up --build
+docker compose -f Docker/aws.docker-compose.yml up
+
+docker compose -f Docker/docker-compose.yml build
+docker compose -f Docker/docker-compose.yml push
+
+docker buildx build --platform linux/amd64 -t purpleghost/web-api:1.0 -f Docker/WebApi.Dockerfile .. --push
+docker buildx build --platform linux/amd64 -t purpleghost/web-api:1.0 -f Docker/WebApi.Dockerfile . --push
+
+# Example for web-api
+docker buildx build --platform linux/amd64 -t purpleghost/web-api:1.0 -f Docker/WebApi.Dockerfile . --push
+
+# Angular
+docker buildx build --platform linux/amd64 \
+  -t purpleghost/angular-dashboard:1.0 \
+  -f Project-4-front-end/notification-router/dockerfile \
+  Project-4-front-end/notification-router/ \
+  --push
+ 
+# Email consumer
+docker buildx build --platform linux/amd64 \
+  -t purpleghost/email-consumer:1.0 \
+  -f Docker/EmailService.Dockerfile \
+  . \
+  --push
+  
+# Payment consumer
+docker buildx build --platform linux/amd64 \
+  -t purpleghost/payment-consumer:1.0 \
+  -f Docker/PaymentService.Dockerfile \
+  . \
+  --push
+ 
+# Retry consumer
+docker buildx build --platform linux/amd64 \
+  -t purpleghost/retry-consumer:1.0 \
+  -f Docker/RetryService.Dockerfile \
+  . \
+  --push
+ 
+
+
+public ip: 98.84.98.8
+ssh -i first.pem ubuntu@98.84.98.8
+
+
 
