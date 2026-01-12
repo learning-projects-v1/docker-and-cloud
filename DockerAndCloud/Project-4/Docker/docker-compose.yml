@@ -6,43 +6,7 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-
-  email-consumer:
-    build: 
-      context: ..
-      dockerfile: Docker/EmailService.Dockerfile
-    container_name: email-consumer
-    depends_on:
-      - rabbitmq
-    environment:
-      RABBITMQ_HOST: rabbitmq
-      RABBITMQ_USER: guest
-      RABBITMQ_PASSWORD: guest
   
-  payment-consumer:
-    build:
-      context: ..
-      dockerfile: Docker/PaymentService.Dockerfile
-    container_name: payment-consumer
-    depends_on:
-      - rabbitmq
-    environment:
-      RABBITMQ_HOST: rabbitmq
-      RABBITMQ_USER: guest
-      RABBITMQ_PASSWORD: guest
-  
-  retry-consumer:
-    build:
-      context: ..
-      dockerfile: Docker/RetryService.Dockerfile
-    container_name: retry-consumer
-    depends_on:
-      - rabbitmq
-    environment:
-      RABBITMQ_HOST: rabbitmq
-      RABBITMQ_USER: guest
-      RABBITMQ_PASSWORD: guest
-      
   web-api:
     build:
       context: ..
@@ -55,5 +19,55 @@ services:
       RABBITMQ_HOST: rabbitmq
       RABBITMQ_USER: guest
       RABBITMQ_PASSWORD: guest
+      ASPNETCORE_URLS: http://0.0.0.0:8080
     ports:
       - "5000:8080"
+    
+  angular-dashboard:
+    build:
+      context: ../Project-4-front-end/notification-router/
+      dockerfile: dockerfile
+    container_name: angular-dashboard
+    ports:
+      - "80:80"
+      
+  email-consumer:
+    build: 
+      context: ..
+      dockerfile: Docker/EmailService.Dockerfile
+    container_name: email-consumer
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+
+  payment-consumer:
+    build:
+      context: ..
+      dockerfile: Docker/PaymentService.Dockerfile
+    container_name: payment-consumer
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+
+  retry-consumer:
+    build:
+      context: ..
+      dockerfile: Docker/RetryService.Dockerfile
+    container_name: retry-consumer
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+#      
+
+
+
+

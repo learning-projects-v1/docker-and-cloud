@@ -13,7 +13,7 @@ export class SignalrService {
     public responseSubject$ = this.responseSubjectSource.asObservable();
 
     public start() {
-        this.hubConnection = new signalR.HubConnectionBuilder()
+        this.hubConnection = new signalR.HubConnectionBuilder()   
             .withUrl(ApiEndPoints.NotificationHubEndpoint)
             .withAutomaticReconnect()
             .build();
@@ -25,7 +25,6 @@ export class SignalrService {
         this.hubConnection.on('onReceiveResponseSignalr', (response: ResponseModel) => {
             console.log("websocket method 'onReceiveResponseSignalr' invoked!")
             this.responseSubjectSource.next(response);
-
         });
     }
 

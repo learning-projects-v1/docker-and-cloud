@@ -73,7 +73,6 @@ async Task EmailServiceConsumer(object sender, BasicDeliverEventArgs @event)
     var body = @event.Body;
     var msgBody = Encoding.UTF8.GetString(body.ToArray());
     Console.WriteLine($"Received Message: {msgBody}");
-    await Task.Delay(1000);
     await channel.BasicAckAsync(@event.DeliveryTag, false);
     var msgEnvelope = JsonSerializer.Deserialize<MessageEnvelop<string>>(msgBody);
     await RabbitmqHelper.PublishResponseAsync(msgEnvelope, @event, "EmailService", channel);

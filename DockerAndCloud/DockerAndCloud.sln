@@ -38,6 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{02EA68
 		.dockerignore = .dockerignore
 		Project-4\Docker\docker-compose.yml = Project-4\Docker\docker-compose.yml
 		Project-4\Docker\WebApi.Dockerfile = Project-4\Docker\WebApi.Dockerfile
+		Project-4\Docker\nginx.conf = Project-4\Docker\nginx.conf
 	EndProjectSection
 EndProject
 Global

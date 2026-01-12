@@ -34,5 +34,5 @@ var app = builder.Build();
 app.UseRouting()
     .UseCors("allowAll");
 app.MapControllers();
-app.MapHub<NotificaitonHub>("signalr");
+app.MapHub<NotificaitonHub>("api/signalr");
 app.Run();

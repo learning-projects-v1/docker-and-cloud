@@ -3,6 +3,7 @@ import { Inject, Injectable } from "@angular/core";
 import { RequestModel, ResponseModel } from "../models/dtos";
 import { ApiEndPoints } from "../configs/api-endpoints";
 import { ApiPaths } from "../configs/api-paths";
+import { environment } from "../../environments/environment.development";
 
 
 @Injectable({
@@ -15,6 +16,7 @@ export class HttpService{
     }
 
     postDirectRequest(request: RequestModel){
+        console.log("BaseUrl: " + environment.api.baseUrl);
         const requestUrl = ApiEndPoints.DirectMessagees.Direct;
         return this.httpClient.post(requestUrl, request);
     }

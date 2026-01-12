@@ -4,8 +4,7 @@ import { ApiPaths } from "./api-paths";
 
 export class ApiEndPoints{
     private static readonly BASE = environment.api.baseUrl;
-    private static readonly ApiVersoin = `Api/${environment.api.version}`;
-
+    private static readonly ApiVersoin = `${environment.api.version}`;
     static readonly DirectMessagees = {
         Direct: `${ApiEndPoints.BASE}/${ApiEndPoints.ApiVersoin}/${ApiPaths.Publish.Root}/${ApiPaths.Publish.Direct}`
     };
