@@ -8,10 +8,35 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
 Console.WriteLine("Hello, World!");
-const string unavailableServiceName = "'Highly Unavailable Service'";
-var factory = new ConnectionFactory() { HostName = "localhost" };
-var connection = await factory.CreateConnectionAsync();
+var hostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST")
+               ?? throw new InvalidOperationException("RABBITMQ_HOST environment variable is not set");
+
+var factory = new ConnectionFactory
+{
+    HostName = hostName,
+    UserName = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest",
+    Password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? "guest",
+};
+
+IConnection connection = null;
+Console.WriteLine("Connecting to RabbitMQ...");
+while (connection == null)
+{
+    try
+    {
+        Console.WriteLine("Connecting to RabbitMQ...");
+        connection = await factory.CreateConnectionAsync();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"RabbitMQ not ready: {ex.Message}");
+        await Task.Delay(5000);
+    }
+}
 var channel = await connection.CreateChannelAsync();
+
+
+const string unavailableServiceName = "'Highly Unavailable Service'";
 
 var unavailableServiceExchange = "project4.unavailable.exchange";
 var retryExchange = "project4.retry.exchange";
@@ -121,4 +146,4 @@ await channel.BasicConsumeAsync(unavailableQueue, false, unavailableConsumer);
 // await channel.BasicConsumeAsync(retryQueue, false, retryConsumer);
 
 Console.WriteLine("Press [enter] to exit");
-Console.ReadLine();
+await Task.Delay(Timeout.Infinite);

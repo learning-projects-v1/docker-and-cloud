@@ -9,9 +9,33 @@ using CoreLibrary.Models;
 
 Console.WriteLine("Hello, World!");
 
-var factory = new ConnectionFactory() { HostName = "localhost" };
-var connection = await factory.CreateConnectionAsync();
+var hostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST")
+               ?? throw new InvalidOperationException("RABBITMQ_HOST environment variable is not set");
+
+var factory = new ConnectionFactory
+{
+    HostName = hostName,
+    UserName = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest",
+    Password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? "guest",
+};
+
+IConnection connection = null;
+Console.WriteLine("Connecting to RabbitMQ...");
+while (connection == null)
+{
+    try
+    {
+        Console.WriteLine("Connecting to RabbitMQ...");
+        connection = await factory.CreateConnectionAsync();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"RabbitMQ not ready: {ex.Message}");
+        await Task.Delay(5000);
+    }
+}
 var channel = await connection.CreateChannelAsync();
+
 
 var exchangeName = "direct";
 var exchangeName2 = "topic";
@@ -61,4 +85,4 @@ async Task PaymentServiceConsumer(object sender, BasicDeliverEventArgs @event)
 
 await channel.BasicConsumeAsync(queueName, false, consumer);
 Console.WriteLine("Press [enter] to exit");
-Console.ReadLine();
+await Task.Delay(Timeout.Infinite);

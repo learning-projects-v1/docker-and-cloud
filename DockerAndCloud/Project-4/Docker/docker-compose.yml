@@ -1,0 +1,59 @@
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  email-consumer:
+    build: 
+      context: ..
+      dockerfile: Docker/EmailService.Dockerfile
+    container_name: email-consumer
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+  
+  payment-consumer:
+    build:
+      context: ..
+      dockerfile: Docker/PaymentService.Dockerfile
+    container_name: payment-consumer
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+  
+  retry-consumer:
+    build:
+      context: ..
+      dockerfile: Docker/RetryService.Dockerfile
+    container_name: retry-consumer
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+      
+  web-api:
+    build:
+      context: ..
+      dockerfile: Docker/WebApi.Dockerfile
+    container_name: web-api
+    depends_on:
+      - rabbitmq
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+    ports:
+      - "5000:8080"

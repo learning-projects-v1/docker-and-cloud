@@ -1,17 +1,22 @@
-"FRONTEND_BASE": "http://localhost:4200"
-# Build:
-docker build -t project-3-backend .
-
-
-
  -- backend
  docker run -d -p 5000:8080 sha256:5a34ef61c80f1365c7bb2b6e43e9d1bfd37518ad474ff61029a5e0e107371a21
- 
+
  docker run -d --env-file .env -p 5000:8080 sha256:48c5ae8bd13c02bd02147ccee1b69e1b92b21dbd2c82b94596fb222c2d9e6c32
  
  -- frontend
  docker run -d -p 4200:80 sha256:4c0333f7fe84bcd67d54cd3b5bca28fca1f00e0ea25b44c2975366241108d994
  
  
- docker build -t project-4-Consumers Docker/EmailService.Dockerfile
+ ---------
+ docker build -f docker/email-consumer.Dockerfile -t yourdockerhub/email-consumer:latest .
+ docker build -f docker/sms-consumer.Dockerfile -t yourdockerhub/sms-consumer:latest .
+ docker build -f docker/push-consumer.Dockerfile -t yourdockerhub/push-consumer:latest .
+
+ 
+docker build -f Docker/EmailService.Dockerfile -t email-service .
+docker build -f Docker/PaymentService.Dockerfile -t payment-service .
+docker build -f Docker/RetryService.Dockerfile -t retry-service .
+docker build -f Docker/WebApi.Dockerfile -t web-api .
+
+docker compose -f Docker/docker-compose.yml up --build
 

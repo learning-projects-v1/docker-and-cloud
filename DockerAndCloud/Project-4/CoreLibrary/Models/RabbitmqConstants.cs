@@ -2,7 +2,7 @@ namespace CoreLibrary.Models;
 
 public static class RabbitmqConstants
 {
-    public static string ResponseExchangeName = "response.exchange";
-    public static string ResponseExchangeRoutingKey = "";
-    public static string ResponseQueueName = "response.queue";
+    public static readonly string ResponseExchangeName = "response.exchange";
+    public static readonly string ResponseExchangeRoutingKey = "";
+    public static readonly string ResponseQueueName = "response.queue";
 }

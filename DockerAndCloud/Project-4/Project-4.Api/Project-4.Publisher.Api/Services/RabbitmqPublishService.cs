@@ -15,14 +15,21 @@ public interface  IRabbitmqPublishService
 
 public class RabbitmqPublishService : IAsyncDisposable, IRabbitmqPublishService
 {
-    private readonly ConnectionFactory _connectionFactory;
+    private readonly ConnectionFactory _factory;
     private IConnection _connection;
     private IChannel _channel;
     private readonly IConfiguration _configuration;
     public RabbitmqPublishService(IConfiguration configuration)
     {
-        var hostName = configuration["HostName"] ?? "localhost";
-        _connectionFactory = new ConnectionFactory { HostName = hostName };
+        var hostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST")
+                       ?? throw new InvalidOperationException("RABBITMQ_HOST environment variable is not set");
+
+        _factory = new ConnectionFactory
+        {
+            HostName = hostName,
+            UserName = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest",
+            Password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? "guest",
+        };
         _configuration = configuration;
     }
 
@@ -32,8 +39,23 @@ public class RabbitmqPublishService : IAsyncDisposable, IRabbitmqPublishService
     }
     public async Task InitializeAsync()
     {
-        _connection = await _connectionFactory.CreateConnectionAsync();
-        _channel = await _connection.CreateChannelAsync();
+        IConnection connection = null;
+        Console.WriteLine("Connecting to RabbitMQ...");
+        while (connection == null)
+        {
+            try
+            {
+                Console.WriteLine("Connecting to RabbitMQ...");
+                connection = await _factory.CreateConnectionAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"RabbitMQ not ready: {ex.Message}");
+                await Task.Delay(5000);
+            }
+        }
+        _channel = await connection.CreateChannelAsync();
+
         await Build();
     }
 

@@ -19,9 +19,12 @@ public class MessageRepository<T> : IMessageRepository<T>
     public List<T> Drain()
     {
         var result = new List<T>();
-        while (_messages.TryDequeue(out T message))
+        while (_messages.TryDequeue(out var message))
         {
-            result.Add(message);
+            if (message != null)
+            {
+                result.Add(message);
+            }
         }
         return result;
     }

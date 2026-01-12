@@ -14,12 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <None Update="Logs\log.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

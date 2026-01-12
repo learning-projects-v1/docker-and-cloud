@@ -16,9 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project-4", "Project-4", "{
 		Project-4\commands.txt = Project-4\commands.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{E7A769BA-DA1B-408D-A7A8-5E25136414A6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project-4.Api", "Project-4.Api", "{E7A769BA-DA1B-408D-A7A8-5E25136414A6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsumerServices", "ConsumerServices", "{9546D007-3FF6-4366-9194-01E5A5885AA2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project-4.Consumers", "Project-4.Consumers", "{9546D007-3FF6-4366-9194-01E5A5885AA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLibrary", "Project-4\CoreLibrary\CoreLibrary.csproj", "{5A4A28A2-A89B-4ADE-AEF1-AFF97A65B052}"
 EndProject
@@ -35,6 +35,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{02EA68
 		Project-4\Docker\EmailService.Dockerfile = Project-4\Docker\EmailService.Dockerfile
 		Project-4\Docker\PaymentService.Dockerfile = Project-4\Docker\PaymentService.Dockerfile
 		Project-4\Docker\RetryService.Dockerfile = Project-4\Docker\RetryService.Dockerfile
+		.dockerignore = .dockerignore
+		Project-4\Docker\docker-compose.yml = Project-4\Docker\docker-compose.yml
+		Project-4\Docker\WebApi.Dockerfile = Project-4\Docker\WebApi.Dockerfile
 	EndProjectSection
 EndProject
 Global
