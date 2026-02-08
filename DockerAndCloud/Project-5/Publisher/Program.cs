@@ -11,9 +11,18 @@ var services = builder.Services;
 
 services.AddMassTransit(x =>
 {
-    x.UsingInMemory((context, cfg) =>
+    // x.UsingInMemory((context, cfg) =>
+    // {
+    //     cfg.Host("localhost");
+    //     cfg.ConfigureEndpoints(context);
+    // });
+    x.UsingRabbitMq((context, cfg) =>
     {
-        cfg.Host("localhost");
+        cfg.Host("localhost", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
         cfg.ConfigureEndpoints(context);
     });
 });

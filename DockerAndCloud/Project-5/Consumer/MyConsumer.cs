@@ -1,7 +1,7 @@
 using Contracts;
 using MassTransit;
 
-namespace CoffeeShop;
+namespace Consumer;
 
 public class MyConsumer : IConsumer<IOrderSubmitted>
 {

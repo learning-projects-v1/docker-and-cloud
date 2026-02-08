@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using CoffeeShop;
+using Consumer;
 using MassTransit;
 using Microsoft.Extensions.Hosting;
 
@@ -11,10 +11,20 @@ var services = builder.Services;
 services.AddMassTransit(x =>
 {
     x.AddConsumer<MyConsumer>();
-    x.UsingInMemory((context, cfg) =>
+    // x.UsingInMemory((context, cfg) =>
+    // {
+    //     cfg.Host("localhost");
+    //     cfg.ConfigureEndpoints(context);
+    // });
+    x.UsingRabbitMq((context, cfg) =>
     {
-        cfg.Host("localhost");
+        cfg.Host("localhost", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
         cfg.ConfigureEndpoints(context);
+        
     });
 });
 
