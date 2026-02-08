@@ -1,5 +1,4 @@
 
-using CoreLibrary.Models;
 using Project_4.Publisher.Api.Repository;
 using Project_4.Publisher.Api.Services;
 
@@ -27,7 +26,7 @@ builder.Services.AddSingleton(
 builder.Services.AddSignalR();
 var app = builder.Build();
 
-// That's one way to intialze async startups
+// That's one way to intialize async startups
 // var rabbitmqService = app.Services.GetRequiredService<IRabbitmqPublishService>();
 // await rabbitmqService.InitializeAsync();
 

@@ -57,6 +57,9 @@ docker buildx build --platform linux/amd64 \
 
 public ip: 98.84.98.8
 ssh -i first.pem ubuntu@98.84.98.8
+ssh -i first.pem -L 15672:localhost:15672 ubuntu@98.84.98.8
 
+# Stop EC2
+aws ec2 stop-instances --instance-ids <INSTANCE_ID>
 
 
